@@ -9,12 +9,14 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ProductItemComponent,
+    CartComponent,
     HeaderComponent,
     FooterComponent
   ],
