@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ChartService } from 'src/app/services/chart.service';
 import { Product } from 'src/models/product';
 
 @Component({
@@ -9,31 +10,40 @@ import { Product } from 'src/models/product';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product = new Product();
 
-  constructor() {}
+  constructor(private chartService: ChartService) {}
 
   ngOnInit() {}
 
-  addToChart(product: Product): void {}
-
-  increaseQuantity(product: Product): void {
-    this.initQuantity(product);
-    if (product.quantity >= 10) {
-      alert('You exceed maximum quantity');
-      product.quantity = 10;
+  addToChart(): void {
+    this.initQuantity(this.product);
+    if(this.product.quantity === 0)
+    {
+      alert("You can't add 0 quantity")
       return;
     }
-    product.quantity += 1;
+    let response = this.chartService.addToChart(this.product);
+    if (response) alert('Addes to chart successfully');
+  }
+
+  increaseQuantity(): void {
+    this.initQuantity(this.product);
+    if (this.product.quantity >= 10) {
+      alert('You exceed maximum quantity');
+      this.product.quantity = 10;
+      return;
+    }
+    this.product.quantity += 1;
     console.log('hit increase');
   }
 
-  decreaseQuantity(product: Product): void {
-    this.initQuantity(product);
-    if (product.quantity <= 0) {
+  decreaseQuantity(): void {
+    this.initQuantity(this.product);
+    if (this.product.quantity <= 0) {
       alert('Quantity can not be negative');
-      product.quantity = 0;
+      this.product.quantity = 0;
       return;
     }
-    product.quantity -= 1;
+    this.product.quantity -= 1;
     console.log('hit decrease');
   }
 
