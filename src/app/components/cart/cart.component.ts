@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/models/product';
 
@@ -9,10 +16,28 @@ import { Product } from 'src/models/product';
 })
 export class CartComponent implements OnInit {
   products: Product[] = [];
-  constructor(private cartService: CartService) {}
+  myForm: FormGroup = new FormGroup({});
+
+  constructor(
+    private cartService: CartService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.products = this.cartService.getProductsInCart();
+    this.myForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      creditCard: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(16),
+          Validators.maxLength(16),
+        ],
+      ],
+    });
   }
 
   increaseQuantity(product: Product): void {
@@ -38,9 +63,21 @@ export class CartComponent implements OnInit {
   calcuateTotalAmount(): number {
     let totalAmount: number = 0;
     for (let i = 0; i < this.products.length; i++) {
-      totalAmount += (this.products[i].quantity * this.products[i].price);
+      totalAmount += this.products[i].quantity * this.products[i].price;
     }
 
     return totalAmount;
+  }
+
+  cancelOrder(): void {
+    this.cartService.removeAllItemFromProduct();
+    this.router.navigate(['']);
+  }
+
+  onSubmit(form: FormGroup) {
+    // console.log('Valid?', form.valid); // true or false
+    // console.log('Name', form.value.name);
+    // console.log('Email', form.value.email);
+    // console.log('Message', form.value.message);
   }
 }

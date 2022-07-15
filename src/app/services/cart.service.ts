@@ -22,4 +22,8 @@ export class CartService {
   getProductsInCart(): Product[] {
     return this.products;
   }
+
+  removeAllItemFromProduct(): void {
+    this.products = [];
+  }
 }

@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { FormsModule } from '@angular/forms';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,15 @@ import { CartComponent } from './components/cart/cart.component';
     ProductItemComponent,
     CartComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
