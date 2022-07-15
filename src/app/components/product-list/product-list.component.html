@@ -1,3 +1,13 @@
-<p>
-  product-list works!
-</p>
+<div class="row">
+  <div *ngFor="let product of products" class="col-md-4 mt-2 product-container">
+    <div class="product-index">
+      <div>
+        <img src="{{product.url}}" />
+      </div>
+      <div class="row">
+        <div>{{product.name}}</div>
+        <div>{{product.price}}$</div>
+      </div>
+    </div>
+  </div>
+</div>
