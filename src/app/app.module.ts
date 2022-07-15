@@ -10,6 +10,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     HeaderComponent,
     FooterComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
