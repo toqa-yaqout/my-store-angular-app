@@ -12,3 +12,9 @@ body {
 .center {
     text-align: center;
 }
+
+.danger{
+    color: red;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

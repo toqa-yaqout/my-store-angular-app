@@ -75,6 +75,10 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
+    console.log(form.value.price);
+    console.log(form.value.name);
+    this.router.navigate(['/confirmation']);
+
     // console.log('Valid?', form.valid); // true or false
     // console.log('Name', form.value.name);
     // console.log('Email', form.value.email);

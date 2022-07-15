@@ -49,13 +49,25 @@
             <label>Full name</label>
             <input class="form-control" formControlName="name">
           </div>
+          <div class="danger"
+            *ngIf="myForm?.get('name')?.invalid && (myForm?.get('name')?.dirty || myForm?.get('name')?.touched)">
+            Name is required
+          </div>
           <div>
             <label>Address</label>
             <input class="form-control" formControlName="address">
           </div>
+          <div class="danger"
+            *ngIf="myForm?.get('address')?.invalid && (myForm?.get('address')?.dirty || myForm?.get('address')?.touched)">
+            Address is required
+          </div>
           <div>
             <label>Credit card number</label>
             <input class="form-control" formControlName="creditCard">
+          </div>
+          <div class="danger"
+            *ngIf="myForm?.get('creditCard')?.invalid && (myForm?.get('creditCard')?.dirty || myForm?.get('creditCard')?.touched)">
+            Credit card number must be 16 characters long.
           </div>
           <div style="color:gray;font-size:11px;margin-top:9px;">
             We will nerver share your payment details with anyone else
