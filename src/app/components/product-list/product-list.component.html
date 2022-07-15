@@ -2,9 +2,9 @@
   <div *ngFor="let product of products" class="col-md-4 mt-2 product-container">
     <div class="product-index">
       <div>
-        <img src="{{product.url}}" />
+        <img class="img-border" src="{{product.url}}" />
       </div>
-      <div class="row">
+      <div class="row mt-2 center">
         <div>{{product.name}}</div>
         <div>{{product.price}}$</div>
       </div>
