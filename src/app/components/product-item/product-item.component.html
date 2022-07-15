@@ -1,0 +1,32 @@
+<div class="product-container">
+
+  <div class="product-image">
+    <img class="img-border" src="{{product.url}}" />
+  </div>
+  <div class="row mt-2 center">
+    <div class="col-md-3">
+      <div>{{product.name}}</div>
+      <div>{{product.price}}$</div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-3">
+          <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity">
+        </div>
+        <div class="col-md-4">
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-success" (click)="increaseQuantity(product)"><i
+                  class="fa-solid fa-plus"></i></button>
+              <button type="button" class="btn btn-success" (click)="decreaseQuantity(product)"><i
+                  class="fa-solid fa-minus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <button class="btn btn-primary">Add to chart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

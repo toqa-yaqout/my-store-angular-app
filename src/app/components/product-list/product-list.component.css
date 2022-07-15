@@ -10,13 +10,3 @@
   display: flex;
   justify-content: center;
 }
-
-img {
-  width: 100%;
-  height: 100%;
-}
-
-.img-border{
-  border: 3px solid #1c87c9;
-  padding: 15px;
-}

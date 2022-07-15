@@ -7,12 +7,19 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    HeaderComponent,
+    FooterComponent
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}
