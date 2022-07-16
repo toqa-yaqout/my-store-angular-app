@@ -1,6 +1,6 @@
 img {
+  width: 100px;
   border-radius: 10px;
-  width: 320px;
 }
 
 .select-input {
@@ -22,4 +22,11 @@ img {
 
 .back-link {
   margin-top: 8px;
+}
+
+.cancel-img {
+  margin-left: 49%;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
 }

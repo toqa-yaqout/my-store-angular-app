@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { Product } from 'src/models/product';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-cart',
@@ -40,26 +40,6 @@ export class CartComponent implements OnInit {
     });
   }
 
-  increaseQuantity(product: Product): void {
-    if (product.quantity >= 10) {
-      alert('You exceed maximum quantity');
-      product.quantity = 10;
-      return;
-    }
-    product.quantity += 1;
-    console.log('hit increase');
-  }
-
-  decreaseQuantity(product: Product): void {
-    if (product.quantity <= 0) {
-      alert('Quantity can not be negative');
-      product.quantity = 0;
-      return;
-    }
-    product.quantity -= 1;
-    console.log('hit decrease');
-  }
-
   calcuateTotalAmount(): number {
     let totalAmount: number = 0;
     for (let i = 0; i < this.products.length; i++) {
@@ -74,14 +54,13 @@ export class CartComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  onProductRemoved(event: Product[]): void {
+    this.products = event;
+  }
+
   onSubmit(form: FormGroup) {
     console.log(form.value.price);
     console.log(form.value.name);
     this.router.navigate(['/confirmation']);
-
-    // console.log('Valid?', form.valid); // true or false
-    // console.log('Name', form.value.name);
-    // console.log('Email', form.value.email);
-    // console.log('Message', form.value.message);
   }
 }

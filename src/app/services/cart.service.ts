@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/models/product';
+import { Product } from 'src/app/models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +9,18 @@ export class CartService {
   constructor() {}
 
   addToCart(product: Product): boolean {
-    let productIndex: number = this.products.findIndex(
-      (e) => e.id == product.id
-    );
+    this.products = this.removeProduct(product.id);
+    this.products.push(product);
+    return true;
+  }
+
+  removeProduct(id: number): Product[] {
+    let productIndex: number = this.products.findIndex((e) => e.id == id);
     if (productIndex !== -1) {
       this.products.splice(productIndex, 1);
     }
-    this.products.push(product);
-    return true;
+
+    return this.products;
   }
 
   getProductsInCart(): Product[] {
