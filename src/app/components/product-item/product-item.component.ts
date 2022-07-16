@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: Product = new Product();
+  @Output() productDetails = new EventEmitter<Product>();
 
   constructor(private router: Router, private cartService: CartService) {}
 
@@ -50,7 +51,7 @@ export class ProductItemComponent implements OnInit {
     if (product.quantity === NaN || product.quantity === undefined)
       product.quantity = value;
   }
-  productDetails(): void {
-    this.router.navigate(['product/details', this.product.id]);
+  showProductDetails(): void {
+    this.productDetails.emit(this.product);
   }
 }

@@ -9,6 +9,8 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  isListShown: boolean = true;
+  detailedProduct: Product = new Product();
 
   constructor(private productService: ProductService) {}
 
@@ -18,5 +20,12 @@ export class ProductListComponent implements OnInit {
     });
   }
 
- 
+  onProductDetails(event: Product): void {
+    this.isListShown = false;
+    this.detailedProduct = event;
+  }
+
+  showList(): void{
+    this.isListShown = true;
+  }
 }

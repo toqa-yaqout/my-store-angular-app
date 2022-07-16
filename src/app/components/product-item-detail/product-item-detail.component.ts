@@ -15,25 +15,26 @@ export class ProductItemDetailComponent implements OnInit {
 
   ngOnInit() {
     this.initQuantity(this.product, 1);
+    console.log();
   }
 
-  increaseQuantity(product: Product): void {
-    if (product.quantity >= 10) {
+  increaseQuantity(): void {
+    if (this.product.quantity >= 10) {
       alert('You exceed maximum quantity');
-      product.quantity = 10;
+      this.product.quantity = 10;
       return;
     }
-    product.quantity += 1;
+    this.product.quantity += 1;
     console.log('hit increase');
   }
 
-  decreaseQuantity(product: Product): void {
-    if (product.quantity <= 0) {
+  decreaseQuantity(): void {
+    if (this.product.quantity <= 0) {
       alert('Quantity can not be negative');
-      product.quantity = 0;
+      this.product.quantity = 0;
       return;
     }
-    product.quantity -= 1;
+    this.product.quantity -= 1;
     console.log('hit decrease');
   }
 

@@ -1,7 +1,13 @@
-<div class="row">
-  <div *ngFor="let product of products" class="col-md-4 mt-2 product-container">
-    <div class="product-index">
-      <app-product-item [product]="product"></app-product-item>
+<div *ngIf="isListShown === true">
+  <div class="row">
+    <div *ngFor="let product of products" class="col-md-4 mt-2 product-container">
+      <div class="product-index">
+        <app-product-item [product]="product" (productDetails)="onProductDetails($event)"></app-product-item>
+      </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="isListShown === false">
+  <app-product-details [product]="detailedProduct" (backToList)="showList()"></app-product-details>
 </div>
