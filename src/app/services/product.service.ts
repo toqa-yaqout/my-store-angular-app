@@ -4,13 +4,18 @@ import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getProducts() : Observable<Product[]>{
+  getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>('../../assets/data.json');
+  }
+
+  private getProductsList(): Product[] {
+    let products: Product[] = [];
+    this.getProducts().subscribe((e) => (products = e));
+    return products;
   }
 }

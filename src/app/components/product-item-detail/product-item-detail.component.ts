@@ -13,7 +13,9 @@ export class ProductItemDetailComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initQuantity(this.product, 1);
+  }
 
   increaseQuantity(product: Product): void {
     if (product.quantity >= 10) {
@@ -33,6 +35,11 @@ export class ProductItemDetailComponent implements OnInit {
     }
     product.quantity -= 1;
     console.log('hit decrease');
+  }
+
+  initQuantity(product: Product, value: number): void {
+    if (product.quantity === NaN || product.quantity === undefined)
+      product.quantity = value;
   }
 
   removeProductFromCart(): void {

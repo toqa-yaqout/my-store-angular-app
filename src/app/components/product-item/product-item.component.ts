@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/models/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
@@ -10,7 +11,7 @@ import { Product } from 'src/app/models/product';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product = new Product();
 
-  constructor(private cartService: CartService) {}
+  constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
     this.initQuantity(this.product, 1);
@@ -48,5 +49,8 @@ export class ProductItemComponent implements OnInit {
   initQuantity(product: Product, value: number): void {
     if (product.quantity === NaN || product.quantity === undefined)
       product.quantity = value;
+  }
+  productDetails(): void {
+    this.router.navigate(['product/details', this.product.id]);
   }
 }
