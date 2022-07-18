@@ -8,6 +8,7 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./product-item-detail.component.css'],
 })
 export class ProductItemDetailComponent implements OnInit {
+  @Input() isDisabled: boolean = false;
   @Input() product: Product = new Product();
   @Output() products = new EventEmitter<Product[]>();
   @Output() productQuantityPrice = new EventEmitter();

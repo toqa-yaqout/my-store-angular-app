@@ -45,14 +45,6 @@ export class CartComponent implements OnInit {
 
     this.totalPrice = totalAmount;
   }
-  // calcuateTotalAmount(): number {
-  //   let totalAmount: number = 0;
-  //   for (let i = 0; i < this.products.length; i++) {
-  //     totalAmount += this.products[i].quantity * this.products[i].price;
-  //   }
-
-  //   return totalAmount;
-  // }
 
   cancelOrder(): void {
     this.cartService.removeAllItemFromProduct();
@@ -64,8 +56,9 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log(form.value.price);
-    console.log(form.value.name);
+    let serializedProducts: string = JSON.stringify(this.products);
+    localStorage.setItem('purchasedProduct', serializedProducts);
+    this.cartService.removeAllItemFromProduct();
     this.router.navigate(['/confirmation']);
   }
 }

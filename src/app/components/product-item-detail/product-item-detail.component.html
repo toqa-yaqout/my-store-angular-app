@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col-md-4">
     <div class="cancel-img">
-      <span (click)="removeProductFromCart()">
-        <i class="fas fa-times"></i>
-      </span>
+      <div *ngIf="!isDisabled">
+        <span (click)="removeProductFromCart()">
+          <i class="fas fa-times"></i>
+        </span>
+      </div>
     </div>
     <img src="{{product.url}}">
   </div>
@@ -12,21 +14,30 @@
       <div class="col-md-4">
         <div>{{product.name}}</div>
         <div>{{product.price}}$</div>
-        <div>{{product.description}}$</div>
+        <div *ngIf="!isDisabled">
+          <div>{{product.description}}</div>
+        </div>
       </div>
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-4">
-            <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity"
-              (ngModelChange)="onQuantityChange($event)">
+            <div *ngIf="!isDisabled">
+              <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity"
+                (ngModelChange)="onQuantityChange($event)">
+            </div>
+            <div *ngIf="isDisabled">
+              <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity" disabled>
+            </div>
           </div>
-          <div class="col-md-4">
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-success" (click)="increaseQuantity()"><i
-                    class="fa-solid fa-plus"></i></button>
-                <button type="button" class="btn btn-success" (click)="decreaseQuantity()"><i
-                    class="fa-solid fa-minus"></i></button>
+          <div *ngIf="!isDisabled">
+            <div class="col-md-4">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-success" (click)="increaseQuantity()"><i
+                      class="fa-solid fa-plus"></i></button>
+                  <button type="button" class="btn btn-success" (click)="decreaseQuantity()"><i
+                      class="fa-solid fa-minus"></i></button>
+                </div>
               </div>
             </div>
           </div>
