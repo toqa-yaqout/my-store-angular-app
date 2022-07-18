@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/models/product';
@@ -16,6 +12,7 @@ import { Product } from 'src/app/models/product';
 export class CartComponent implements OnInit {
   products: Product[] = [];
   myForm: FormGroup = new FormGroup({});
+  totalPrice: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -25,6 +22,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.products = this.cartService.getProductsInCart();
+    this.calculateTotalPrice();
     this.myForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       address: ['', [Validators.required, Validators.minLength(3)]],
@@ -39,14 +37,22 @@ export class CartComponent implements OnInit {
     });
   }
 
-  calcuateTotalAmount(): number {
+  calculateTotalPrice(): void {
     let totalAmount: number = 0;
     for (let i = 0; i < this.products.length; i++) {
       totalAmount += this.products[i].quantity * this.products[i].price;
     }
 
-    return totalAmount;
+    this.totalPrice = totalAmount;
   }
+  // calcuateTotalAmount(): number {
+  //   let totalAmount: number = 0;
+  //   for (let i = 0; i < this.products.length; i++) {
+  //     totalAmount += this.products[i].quantity * this.products[i].price;
+  //   }
+
+  //   return totalAmount;
+  // }
 
   cancelOrder(): void {
     this.cartService.removeAllItemFromProduct();

@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductItemDetailComponent implements OnInit {
   @Input() product: Product = new Product();
   @Output() products = new EventEmitter<Product[]>();
+  @Output() productQuantityPrice = new EventEmitter();
 
   constructor(private cartService: CartService) {}
 
@@ -25,6 +26,7 @@ export class ProductItemDetailComponent implements OnInit {
       return;
     }
     this.product.quantity += 1;
+    this.onQuantityChange(this.product.quantity);
     console.log('hit increase');
   }
 
@@ -35,12 +37,18 @@ export class ProductItemDetailComponent implements OnInit {
       return;
     }
     this.product.quantity -= 1;
+    this.onQuantityChange(this.product.quantity);
     console.log('hit decrease');
   }
 
   initQuantity(product: Product, value: number): void {
     if (product.quantity === NaN || product.quantity === undefined)
       product.quantity = value;
+  }
+
+  onQuantityChange(value: number): void {
+    let productQuantityPrice: number = value * this.product.price;
+   this.productQuantityPrice.emit();
   }
 
   removeProductFromCart(): void {

@@ -9,7 +9,8 @@
   <div class="row">
     <div class="col-md-6 mt-2">
       <div *ngFor="let product of products" class="mt-2">
-        <app-product-item-detail [product]="product" (products)="onProductRemoved($event)"></app-product-item-detail>
+        <app-product-item-detail [product]="product" (products)="onProductRemoved($event)"
+        (productQuantityPrice)="calculateTotalPrice()"></app-product-item-detail>
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -73,7 +74,8 @@
       <h3>Total amount</h3>
     </label>
     <div>
-      <h3>{{calcuateTotalAmount()}}$</h3>
+      <!-- <h3>{{calcuateTotalAmount()}}$</h3> -->
+      <h3>{{totalPrice}}$</h3>
     </div>
   </div>
 </div>

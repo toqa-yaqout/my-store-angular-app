@@ -17,7 +17,8 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-4">
-            <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity">
+            <input type="number" class="form-control" name="quantity" [(ngModel)]="product.quantity"
+              (ngModelChange)="onQuantityChange($event)">
           </div>
           <div class="col-md-4">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
