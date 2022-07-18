@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -27,8 +26,8 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.products = this.cartService.getProductsInCart();
     this.myForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      address: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      address: ['', [Validators.required, Validators.minLength(3)]],
       creditCard: [
         '',
         [

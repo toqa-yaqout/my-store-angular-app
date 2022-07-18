@@ -22,7 +22,12 @@
           </div>
           <div class="danger"
             *ngIf="myForm?.get('name')?.invalid && (myForm?.get('name')?.dirty || myForm?.get('name')?.touched)">
-            Name is required
+            <div *ngIf="myForm?.get('name')?.hasError('required')">
+              Name is required
+            </div>
+          </div>
+          <div class="danger" *ngIf="myForm?.get('name')?.hasError('minlength')">
+            The minimum length is 3 characters
           </div>
           <div>
             <label>Address</label>
@@ -30,7 +35,12 @@
           </div>
           <div class="danger"
             *ngIf="myForm?.get('address')?.invalid && (myForm?.get('address')?.dirty || myForm?.get('address')?.touched)">
-            Address is required
+            <div *ngIf="myForm?.get('address')?.hasError('required')">
+              Address is required
+            </div>
+          </div>
+          <div class="danger" *ngIf="myForm?.get('address')?.hasError('minlength')">
+            The minimum length is 3 characters
           </div>
           <div>
             <label>Credit card number</label>
@@ -38,7 +48,12 @@
           </div>
           <div class="danger"
             *ngIf="myForm?.get('creditCard')?.invalid && (myForm?.get('creditCard')?.dirty || myForm?.get('creditCard')?.touched)">
-            Credit card number must be 16 characters long.
+            <div *ngIf="myForm?.get('creditCard')?.hasError('required')">
+              Credit card number is required
+            </div>
+            <div class="danger" *ngIf="myForm?.get('creditCard')?.hasError('minlength') || myForm?.get('creditCard')?.hasError('maxlength')">
+              Credit card number should be 16 number
+             </div>
           </div>
           <div style="color:gray;font-size:11px;margin-top:9px;">
             We will nerver share your payment details with anyone else
